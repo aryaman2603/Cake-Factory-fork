@@ -1,0 +1,87 @@
+/* Footer Styles */
+footer {
+  background-color: #222; /* Dark background */
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  border-top: 3px solid #ff6b6b; /* Red accent */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Contact Section */
+.contact p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff6b6b; /* Accent color */
+}
+
+/* Footer Info */
+.footer-info {
+  text-align: center;
+}
+
+.footer-info p {
+  margin: 5px 0;
+}
+
+.footer-info strong {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Social Icons */
+.social-icons {
+  margin-top: 10px;
+}
+
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  background-color: #ff6b6b; /* Red dots */
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.dot:hover {
+  transform: scale(1.3);
+  background-color: #ff5252; /* Lighter red on hover */
+}
+
+input[type="email"] {
+    padding: 10px 15px;
+    border: 2px solid #ffffff;  /* White border */
+    background-color: white;    /* ✅ White background */
+    color: black;               /* ✅ Black text for contrast */
+    border-radius: 5px;
+    outline: none;
+    margin-top: 5px;
+    font-size: 14px;
+    width: 250px;               /* ✅ Wider for readability */
+    transition: all 0.3s ease-in-out;
+}
+  
+/* Focus Effect */
+input[type="email"]:focus {
+    border-color: #ff6b6b;      /* ✅ Red accent when focused */
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  footer {
+    font-size: 12px;
+    padding: 15px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}

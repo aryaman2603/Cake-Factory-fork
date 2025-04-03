@@ -1,0 +1,141 @@
+.productDetailContainer {
+  display: flex;
+  padding: 20px;
+  background-color: #F4EBE1;
+}
+
+.productImages {
+  flex: 1;
+  text-align: center;
+}
+
+.mainImage {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.imageThumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 50px;
+  cursor: pointer;
+}
+
+.active {
+  border: 2px solid #912B2B;
+}
+
+.productInfo {
+  flex: 1;
+  padding: 20px;
+}
+
+.productPrice {
+  font-size: 24px;
+  color: #912B2B;
+  font-weight: bold;
+}
+
+.productRating {
+  display: flex;
+  align-items: center;
+}
+
+.reviewCount {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.productDescription {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.productOptions {
+  margin-top: 20px;
+}
+
+.sizeSelector h3 {
+  margin-bottom: 10px;
+}
+
+.options {
+  display: flex;
+  gap: 10px;
+}
+
+.sizeOption {
+  padding: 8px 15px;
+  background: #912B2B;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.quantitySelector {
+  margin-top: 20px;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantityBtn {
+  padding: 5px 10px;
+  background: #912B2B;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.productActions {
+  margin-top: 20px;
+}
+
+.addToCart, .buyNow {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.addToCart {
+  background: #912B2B;
+  color: white;
+}
+
+.buyNow {
+  background: #F4EBE1;
+  border: 2px solid #912B2B;
+  color: #912B2B;
+}
+
+.productMeta {
+  margin-top: 20px;
+}
+
+.productNotFound {
+  text-align: center;
+  padding: 50px;
+}
+
+.productNotFound h2 {
+  color: #912B2B;
+}
+
+.productNotFound button {
+  background: #912B2B;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}

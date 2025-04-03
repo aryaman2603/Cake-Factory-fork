@@ -1,0 +1,102 @@
+/* Main Content */
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: 20px;
+  background-color: #f5e8db; /* Light beige background */
+}
+
+/* Image Container */
+.imageContainer {
+  flex: 1;
+  overflow: hidden;
+  max-width: 500px; /* Set max width */
+  border: 5px solid #ffffff; /* White border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Hover Effect - Pop Up */
+.imageContainer:hover {
+  transform: scale(1.05); /* Zoom effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px; /* Ensure the border applies to the image */
+}
+
+/* Text Container */
+.textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  max-width: 600px;
+}
+
+.textContainer h1 {
+  font-family: 'Castoro Titling', serif;
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #222;
+  text-align: center;
+  border-bottom: 2px solid #222; /* Add bottom border */
+  padding-bottom: 10px;
+}
+
+.textContainer p {
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+/* Shop Button */
+.shopButton {
+  font-family: 'Henny Penny', cursive;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  align-self: center;
+  border-radius: 5px;
+}
+
+.shopButton:hover {
+  background-color: #ff5252;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .imageContainer {
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+
+  .textContainer {
+    padding: 30px;
+  }
+
+  .shopButton {
+    align-self: center;
+  }
+}
