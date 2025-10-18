@@ -38,6 +38,10 @@
 }
 
 /* Cart Icon */
+.cart {
+    position: relative; /* Ensure the badge is positioned relative to the cart icon */
+}
+
 .cart img {
     width: 30px;
     height: 30px;
@@ -61,6 +65,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: -5px; /* Adjusted to bring it closer vertically */
+    right: -5px; /* Adjusted to bring it closer horizontally */
+    transform: none; /* Removed unnecessary transform */
 }

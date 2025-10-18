@@ -14,12 +14,12 @@ h1 {
 
 /* Product Grid */
 .productGrid {
-  padding: 10px;
-  margin: 50px auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+  gap: 20px; /* Adjust spacing between items */
+  max-width: 1200px; /* Set a maximum width for the grid */
+  margin: 0 auto; /* Center the grid horizontally */
+  padding: 0 20px; /* Add some padding for smaller screens */
 }
 
 /* Product Card */
