@@ -1,53 +1,122 @@
 import express from 'express';
-import products from '../data/products.js';
+import AWS from 'aws-sdk';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const router = express.Router();
 
-// Get all products
-router.get('/', (req, res) => {
-  console.log("Data being sent:", products);
-  res.json(products);
+// Configure AWS SDK
+AWS.config.update({ region: process.env.AWS_REGION });
+const docClient = new AWS.DynamoDB.DocumentClient();
+const tableName = 'cake-factory-db';
+
+// GET all products
+router.get('/', async (req, res) => {
+  const params = {
+    TableName: tableName,
+  };
+  try {
+    const data = await docClient.scan(params).promise();
+    res.json(data.Items);
+  } catch (error) {
+    console.error('DynamoDB Error:', error);
+    res.status(500).json({ error: 'Could not fetch products' });
+  }
 });
 
-// Add a new product
-router.post('/', (req, res) => {
-  const { name, price, description } = req.body;
-  if (!name || !price || !description) {
-    return res.status(400).json({ error: "All fields are required" });
+// GET a single product by ID
+router.get('/:id', async (req, res) => {
+  const params = {
+    TableName: tableName,
+    Key: {
+      id: parseInt(req.params.id),
+    },
+  };
+  try {
+    const data = await docClient.get(params).promise();
+    if (data.Item) {
+      res.json(data.Item);
+    } else {
+      res.status(404).json({ error: 'Product not found' });
+    }
+  } catch (error) {
+    console.error('DynamoDB Error:', error);
+    res.status(500).json({ error: 'Could not fetch product' });
   }
+});
+
+// POST (add) a new product
+router.post('/', async (req, res) => {
+  const { name, price, description, image, category, inStock } = req.body;
   const newProduct = {
-    id: products.length + 1,
+    id: Date.now(), // Use a timestamp for a unique ID
     name,
     price,
     description,
+    image,
+    category,
+    inStock
   };
-  products.push(newProduct);
-  res.status(201).json(newProduct);
+  const params = {
+    TableName: tableName,
+    Item: newProduct,
+  };
+  try {
+    await docClient.put(params).promise();
+    res.status(201).json(newProduct);
+  } catch (error) {
+    console.error('DynamoDB Error:', error);
+    res.status(500).json({ error: 'Could not add product' });
+  }
 });
 
-// Update a product
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
-  const { name, price, description } = req.body;
-  const product = products.find((p) => p.id === parseInt(id));
-  if (!product) {
-    return res.status(404).json({ error: "Product not found" });
-  }
-  product.name = name || product.name;
-  product.price = price || product.price;
-  product.description = description || product.description;
-  res.json(product);
+// PUT (update) a product by ID
+router.put('/:id', async (req, res) => {
+    const { name, price, description } = req.body;
+    const params = {
+        TableName: tableName,
+        Key: {
+            id: parseInt(req.params.id)
+        },
+        UpdateExpression: 'set #n = :n, price = :p, description = :d',
+        ExpressionAttributeNames: {
+            '#n': 'name' // 'name' is a reserved word in DynamoDB
+        },
+        ExpressionAttributeValues: {
+            ':n': name,
+            ':p': price,
+            ':d': description
+        },
+        ReturnValues: 'ALL_NEW'
+    };
+
+    try {
+        const data = await docClient.update(params).promise();
+        res.json(data.Attributes);
+    } catch (error) {
+        console.error('DynamoDB Error:', error);
+        res.status(500).json({ error: 'Could not update product' });
+    }
 });
 
-// Delete a product
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  const productIndex = products.findIndex((p) => p.id === parseInt(id));
-  if (productIndex === -1) {
-    return res.status(404).json({ error: "Product not found" });
-  }
-  products.splice(productIndex, 1);
-  res.status(204).send();
+// DELETE a product by ID
+router.delete('/:id', async (req, res) => {
+    const params = {
+        TableName: tableName,
+        Key: {
+            id: parseInt(req.params.id)
+        }
+    };
+
+    try {
+        await docClient.delete(params).promise();
+        res.status(204).send(); // 204 No Content is a standard success response for delete
+    } catch (error) {
+        console.error('DynamoDB Error:', error);
+        res.status(500).json({ error: 'Could not delete product' });
+    }
 });
+
 
 export default router;
