@@ -3,15 +3,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import cartIcon from '../assets/images/cart.png';
 import styles from '../styles/Header.module.css';
-// 1. IMPORT the useAuthenticator hook
-import { useAuthenticator } from '@aws-amplify/ui-react';
+
 
 const Header = () => {
   const location = useLocation();
   const { itemCount } = useCart();
-  // 2. GET the user object and signOut function from Amplify
-  const { user, signOut } = useAuthenticator((context) => [context.user]);
-
+  
   return (
     <header className={styles.header}>
       <div className={styles.logo}>CAKE FACTORY</div>
@@ -41,25 +38,11 @@ const Header = () => {
               Contact
             </Link>
           </li>
+          <li>
+            <Link to="/login" className={location.pathname === '/login' ? styles.active : ''}>Login / Signup</Link>
+          </li>
           
-          {/* 3. ADD a conditional block for Login/Logout */}
-          {user ? (
-            // If user is logged in, show their name and a Sign Out button
-            <>
-              <li><span className={styles.welcomeMessage}>Hello, {user.username}</span></li>
-              <li><button onClick={signOut} className={styles.authButton}>Sign Out</button></li>
-            </>
-          ) : (
-            // If no user, show the Login link
-            <li>
-              <Link 
-                to="/login"
-                className={`${styles.authButton} ${location.pathname === '/login' ? styles.active : ''}`} 
-              >
-                Login
-              </Link>
-            </li>
-          )}
+          
         </ul>
       </nav>
       <div className={styles.cart}>

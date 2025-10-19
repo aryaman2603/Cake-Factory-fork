@@ -1,11 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom'; // Outlet is a placeholder for your page content
 import { AmplifyChatbot } from '@aws-amplify/ui-react';
+import Header from './Header';
+import Footer from './Footer';
 
 const Layout = () => {
   return (
     <div>
-      {/* Your Navbar would go here if you have one */}
+      {<Header />}
       
       <main>
         {/* Outlet will render the current page (Home, Shop, etc.) */}
@@ -19,7 +21,7 @@ const Layout = () => {
         welcomeMessage="Hello, how can I help you today?"
       />
 
-      {/* Your Footer would go here */}
+      {<Footer />}
     </div>
   );
 };
