@@ -69,3 +69,30 @@
     right: -5px; /* Adjusted to bring it closer horizontally */
     transform: none; /* Removed unnecessary transform */
 }
+
+/* Styling for the Login link and Sign Out button */
+.authButton {
+    background-color: #5a4bff; /* A nice modern purple */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from the Login link */
+    font-size: inherit; /* Matches the font size of other nav items */
+    font-family: inherit;
+    transition: background-color 0.2s ease-in-out;
+    display: inline-block;
+  }
+  
+  .authButton:hover {
+    background-color: #483acc; /* A slightly darker purple on hover */
+  }
+  
+  /* Styling for the 'Hello, username' text */
+  .welcomeMessage {
+    display: flex;
+    align-items: center; /* Vertically aligns the text with other nav items */
+    margin-right: 16px; /* Adds some space between the text and the sign out button */
+    color: #555; /* A soft text color */
+  }
