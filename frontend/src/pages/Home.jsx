@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BreadImage from '../assets/images/BAKERY.jpg'; // Ensure the file exists
 import styles from '../styles/Home.module.css'; // Ensure this path is correct
-
+import FloatingChatBot from '../components/FloatingChatBot';
 const Home = () => {
   return (
     <>
@@ -30,6 +30,7 @@ const Home = () => {
           <Link to="/shop">
             <button className={styles.shopButton}>SHOP NOW</button>
           </Link>
+          <FloatingChatBot />
         </div>
       </section>
       <Footer />

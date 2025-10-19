@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
-
+import lexConfig from './lexConfig';
 // Pages
 import Home from './pages/Home';
 import Shop from './pages/Shop';
@@ -15,7 +15,13 @@ import Login from './pages/Login'; // new login/signup page
 import './styles/globals.css';
 
 // Configure Amplify
-Amplify.configure(awsExports);
+const amplifyConfig = {
+  ...awsExports,
+  ...lexConfig,
+};
+
+// Configure Amplify once
+Amplify.configure(amplifyConfig);
 
 const App = () => {
   return (
