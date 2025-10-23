@@ -1,11 +1,12 @@
 // Lex chatbot configuration
 const lexConfig = {
     Interactions: {
-      bots: {
+      LexV2: {
         "CakeFactoryAssistant": {
-          name: "CakeFactoryAssistant", // your Lex bot name
-          alias: "$LATEST",             // your bot alias
-          region: "ap-southeast-1",         // Lex bot region
+            aliasId: 'TSTALIASID',
+            botId: '1FFTDI1ZZD',
+            localeId: 'en_US',
+            region: 'ap-southeast-1',
         },
       },
     },
